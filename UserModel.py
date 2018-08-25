@@ -26,8 +26,8 @@ class User(db.Model):
         else:
             return True
 
-    # def getAllUsers():
-    #     return User.query.all()
+    def getAllUsers():
+        return User.query.all()
 
     def createUser(_username, _password):
         new_user = User(username=_username, password=_password)

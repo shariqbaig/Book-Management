@@ -8,6 +8,7 @@ Available Routes are:
 
 - `GET -->` / `-->` Home
 - `GET -->` /books `-->` To get all books
+- `GET -->` /users `-->` To get all users
 - `GET -->`/books/12345678 `-->` To get book by ISBN
 - `GET -->`/books/page/1?limit=100 `-->` To get books page and limit vise
 

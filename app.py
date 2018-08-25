@@ -111,6 +111,11 @@ def get_books():
     return jsonify({'books': Book.get_all_books()})
 
 
+@app.route('/users')
+def get_users():
+    return jsonify({'users': User.getAllUsers()})
+
+
 @app.route('/')
 def home():
     return '<h1>Book Management System</h1>'
