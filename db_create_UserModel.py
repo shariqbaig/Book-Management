@@ -1,5 +1,6 @@
 from UserModel import db, User
 
+db.drop_all()
 db.create_all()
 
 User.createUser('test', 'pass')

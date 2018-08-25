@@ -1,10 +1,10 @@
-from BookModel import bookDb, Book
+from BookModel import db, Book
 
-bookDb.drop_all()
-bookDb.create_all()
+db.drop_all()
+db.create_all()
 
 Book.add_book('Do Androids Dream of Electric Sheep', 7.99, 101)
 Book.add_book('Something Wicked This Way Comes', 10.99, 102)
 Book.add_book('The Unbearable Lightness of Being', 6.99, 103)
 
-bookDb.session.commit()
+db.session.commit()
