@@ -101,6 +101,7 @@ def get_books_by_isbn(isbn):
 @app.route('/books', methods=['POST'])
 @token_required
 def add_book():
+    print('Came here')
     request_data = request.get_json()
     if(validBookObject(request_data)):
         Book.add_book(request_data['name'],
