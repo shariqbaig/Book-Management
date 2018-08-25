@@ -1,9 +1,9 @@
-from BookModel import db, Book
+from BookModel import bookDb, Book
 
-db.create_all()
+bookDb.create_all()
 
-Book.add_book('Do Androids Dream of Electric Sheep?', 7.99, 64543546435)
-Book.add_book('Something Wicked This Way Comes', 10.99, 6451687464)
-Book.add_book('The Unbearable Lightness of Being', 6.99, 6435121545)
+Book.add_book('Do Androids Dream of Electric Sheep?', 7.99, 101)
+Book.add_book('Something Wicked This Way Comes', 10.99, 102)
+Book.add_book('The Unbearable Lightness of Being', 6.99, 103)
 
-db.session.commit()
+bookDb.session.commit()
