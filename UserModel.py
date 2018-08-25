@@ -11,6 +11,9 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
 
+    def json(self):
+        return {'username': self.username, 'password': self.password}
+
     def __repr__(self):
         book_object = {
             'username': self.username,
@@ -27,7 +30,7 @@ class User(db.Model):
             return True
 
     def getAllUsers():
-        return User.query.all()
+        return [User.json(user) for user in User.query.all()]
 
     def createUser(_username, _password):
         new_user = User(username=_username, password=_password)
