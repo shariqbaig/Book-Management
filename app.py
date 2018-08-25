@@ -19,6 +19,13 @@ def validBookObject(bookObject):
         return False
 
 
+def validUserObject(userObject):
+    if ("username" in userObject and "password" in userObject):
+        return True
+    else:
+        return False
+
+
 def valid_put_request_data(bookObject):
     if ("name" in bookObject and "price" in bookObject):
         return True
@@ -43,8 +50,6 @@ def token_required(f):
         except:
             return jsonify({'error': 'Need a valid token to view this page'}), 401
     return wrapper
-
-# GET /books/page/1?limit=100
 
 
 @app.route('/books/page/<int:page_number>')
@@ -81,6 +86,24 @@ def get_token():
 
     else:
         Response('', status=401, mimetype='application/json')
+
+
+@app.route('/create', methods=['POST'])
+def create_user():
+    request_data = request.get_json()
+    if(validUserObject(request_data)):
+        User.createUser(request_data['username'], request_data['password'])
+        response = Response("", status=201, mimetype='application/json')
+        return response
+    else:
+        invalidBookObjectErrorMsg = {
+            "error": "Invalid User Object passed in request",
+            "helpString": "Data passed in similar to this {'username': 'user', 'password': 'pass' }"
+        }
+
+        response = Response(json.dumps(invalidBookObjectErrorMsg),
+                            status=400, mimetype='application/json')
+        return response
 
 
 @app.route('/books')
