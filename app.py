@@ -4,6 +4,7 @@ from UserModel import User
 from settings import app
 import jwt
 import datetime
+import sys
 from functools import wraps
 
 # books = Book.get_all_books()
@@ -101,11 +102,14 @@ def get_books_by_isbn(isbn):
 @app.route('/books', methods=['POST'])
 @token_required
 def add_book():
-    print('Came here')
     request_data = request.get_json()
     if(validBookObject(request_data)):
-        Book.add_book(request_data['name'],
-                      request_data['price'], request_data['isbn'])
+        try:
+            Book.add_book(request_data['name'],
+                          request_data['price'], request_data['isbn'])
+        except:
+            print('Unexpected error: ', sys.exc_info()[0])
+
         response = Response("", status=201, mimetype='application/json')
         response.headers['Location'] = "/books/" + str(request_data['isbn'])
         return response
