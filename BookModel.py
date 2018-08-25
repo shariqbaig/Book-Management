@@ -10,7 +10,7 @@ class Book(bookDb.Model):
     id = bookDb.Column(bookDb.Integer, primary_key=True)
     name = bookDb.Column(bookDb.String(80), nullable=False)
     price = bookDb.Column(bookDb.Float, nullable=False)
-    isbn = bookDb.Column(bookDb.Integer)
+    isbn = bookDb.Column(bookDb.BigInteger)
 
     def json(self):
         return {'name': self.name, 'price': self.price, 'isbn': self.isbn}

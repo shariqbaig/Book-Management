@@ -1,5 +1,6 @@
 from BookModel import bookDb, Book
 
+bookDb.drop_all()
 bookDb.create_all()
 
 Book.add_book('Do Androids Dream of Electric Sheep', 7.99, 101)
