@@ -81,6 +81,11 @@ def get_books():
     return jsonify({'books': books})
 
 
+@app.route('/')
+def home():
+    return '<h1>Book Management System</h1>'
+
+
 @app.route('/books/<int:isbn>')
 def get_books_by_isbn(isbn):
     return_value = Book.get_book(isbn)
