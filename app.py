@@ -6,7 +6,7 @@ import jwt
 import datetime
 from functools import wraps
 
-books = Book.get_all_books()
+# books = Book.get_all_books()
 DEFAULT_PAGE_LIMIT = 3
 
 
@@ -48,6 +48,7 @@ def token_required(f):
 
 @app.route('/books/page/<int:page_number>')
 def get_paginated_books(page_number):
+    books = Book.get_all_books()
     print(type(request.args.get('limit')))
     LIMIT = request.args.get('limit', DEFAULT_PAGE_LIMIT, int)
     startIndex = page_number * LIMIT * LIMIT
@@ -78,7 +79,7 @@ def get_token():
 
 @app.route('/books')
 def get_books():
-    return jsonify({'books': books})
+    return jsonify({'books': Book.get_all_books()})
 
 
 @app.route('/')
