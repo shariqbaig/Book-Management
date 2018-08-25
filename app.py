@@ -1,10 +1,25 @@
 from flask import jsonify, request, Response, json
-from BookModel import Book
-from UserModel import User
+from BookModel import bookDb, Book
+from UserModel import db, User
 from settings import app
 import jwt
 import datetime
 from functools import wraps
+
+bookDb.create_all()
+
+Book.add_book('Do Androids Dream of Electric Sheep?', 7.99, 64543546435)
+Book.add_book('Something Wicked This Way Comes', 10.99, 6451687464)
+Book.add_book('The Unbearable Lightness of Being', 6.99, 6435121545)
+
+bookDb.session.commit()
+
+db.create_all()
+
+User.createUser('test', 'pass')
+User.createUser('abc', '123')
+
+db.session.commit()
 
 books = Book.get_all_books()
 DEFAULT_PAGE_LIMIT = 3
