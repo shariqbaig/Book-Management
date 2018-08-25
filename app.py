@@ -72,7 +72,7 @@ def get_token():
     match = User.username_password_match(username, password)
 
     if match:
-        expiration_date = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+        expiration_date = datetime.datetime.utcnow() + datetime.timedelta(seconds=360000)
         print(expiration_date)
         token = jwt.encode({'exp': expiration_date},
                            app.config['SECRET_KEY'], algorithm='HS256')
