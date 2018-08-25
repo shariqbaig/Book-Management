@@ -49,10 +49,15 @@ def token_required(f):
 @app.route('/books/page/<int:page_number>')
 def get_paginated_books(page_number):
     books = Book.get_all_books()
-    print(type(request.args.get('limit')))
     LIMIT = request.args.get('limit', DEFAULT_PAGE_LIMIT, int)
-    startIndex = page_number * LIMIT * LIMIT
-    endIndex = page_number * LIMIT
+    startIndex = (page_number - 1) * LIMIT
+    endIndex = len(books)
+
+    if(LIMIT < endIndex):
+        endIndex = LIMIT * page_number
+        if(endIndex > len(books)):
+            endIndex = len(books)
+
     print(startIndex)
     print(endIndex)
     return jsonify({'books': books[startIndex:endIndex]})
