@@ -109,6 +109,7 @@ def add_book():
                           request_data['price'], request_data['isbn'])
         except:
             print('Unexpected error: ', sys.exc_info()[0])
+            print('more error', sys.exc_info()[1])
 
         response = Response("", status=201, mimetype='application/json')
         response.headers['Location'] = "/books/" + str(request_data['isbn'])
